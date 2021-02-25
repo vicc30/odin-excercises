@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <img src="#" />
+    <button id="btn">Click me</button>
+    <input type="text" />
+    <button id="srch">Search</button>
+    <script>
+        const img = document.querySelector('img');
+        const input = document.querySelector('input');
+        const btn = document.getElementById('btn');
+        const search = document.getElementById('srch');
+
+        async function getRandom() {
+            const response = await fetch('https://api.giphy.com/v1/gifs/translate?api_key=5JU7HipEycb2wG5jbLtgCArsVP0S1K7G&s=cats', { mode: 'cors' });
+            const catData = await response.json();
+            img.src = "";
+            img.src = catData.data.images.original.url;
+        }
+
+        btn.addEventListener('click', e => {
+            getRandom();
+        });
+
+        search.addEventListener('click', e => {
+            fetch(`https://api.giphy.com/v1/gifs/translate?api_key=5JU7HipEycb2wG5jbLtgCArsVP0S1K7G&s=${input.value}`, { mode: 'cors' })
+                .then(function (response) {
+                    console.log(response);
+                    return response.json();
+                })
+                .then(function (response) {
+                    img.src = "";
+                    img.src = response.data.images.original.url;
+                })
+                .catch(function (response) {
+                    console.log("There is no image");
+                })
+        });
+
+        getRandom();
+
+    </script>
+</body>
+
+</html>

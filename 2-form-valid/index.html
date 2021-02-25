@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form validation</title>
+    <link href="./style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <h2>Form validation</h2>
+    <p>Example of form validation with js</p>
+
+    <div class="container">
+        <form id="form">
+            <div class="row">
+                <div class="col-25">
+                    <label for="fname">First Name</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="fname" name="firstname" placeholder="Your name.."
+                    required minlength="3" maxlength="25">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="lname">Last Name</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="lname" name="lastname" placeholder="Your last name.."
+                    required minlength="3" maxlength="30">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="email">Email</label>
+                </div>
+                <div class="col-75">
+                    <input type="email" id="email" name="email" placeholder="Give your email.."
+                    required minlength="6" maxlength="130">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="country">Country</label>
+                </div>
+                <div class="col-75">
+                    <select id="country" name="country">
+                        <option value="australia" selected>Mexico</option>
+                        <option value="canada">Canada</option>
+                        <option value="usa">USA</option>
+                        <option value="usa">other</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="mesage">Message</label>
+                </div>
+                <div class="col-75">
+                    <textarea id="message" name="message" placeholder="Write something.."
+                        maxlength="450"
+                        style="height:200px"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <input type="submit" value="Submit" onsubmit="console.log('submited')">
+            </div>
+        </form>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>
+
+</body>
+
+</html>
