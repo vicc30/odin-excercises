@@ -9,16 +9,15 @@ const Overview = (props) => {
     return (
 
         <div>
-            <ol>
+            <ul>
                 {tasks.map((task) => {
                     return (
-                        <li key={uniqid.time()}>{task}</li>
+                        <li key={uniqid.time()}>{task.count}: {task.name}</li>
                     )
                 })}
-            </ol>
+            </ul>
         </div>
     );
-
 }
 
 export default Overview;

@@ -9,6 +9,7 @@ class App extends React.Component {
 
     this.state = {
       value: "",
+      count: 1,
       tasks: []
     };
 
@@ -22,18 +23,21 @@ class App extends React.Component {
 
   onClickBtn(e) {
     this.setState(state => {
-      const tasks = state.tasks.concat(this.state.value);
+      const tasks = state.tasks
+        .concat({ name: this.state.value, count: this.state.count });
+      const count = state.count + 1;
 
       return {
         tasks,
-        value: ""
+        value: "",
+        count
       }
     });
     e.preventDefault();
   }
 
   render() {
-    
+
     return (
       <div>
         <form>
