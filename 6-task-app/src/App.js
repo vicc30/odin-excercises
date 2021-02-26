@@ -1,6 +1,7 @@
 //App.js is going to handle the input field with the logic
 import React from 'react';
 import Overview from './components/Overview';
+import uniqid from "uniqid";
 
 class App extends React.Component {
 
@@ -10,11 +11,22 @@ class App extends React.Component {
     this.state = {
       value: "",
       count: 1,
-      tasks: []
+      tasks: [],
+      counter: []
     };
 
     this.onChangeInput = this.onChangeInput.bind(this);
     this.onClickBtn = this.onClickBtn.bind(this);
+    this.onDeleteTask = this.onDeleteTask.bind(this);
+    this.updateCounter = this.updateCounter.bind(this);
+  }
+
+  updateCounter() {
+    let newCounter = [];
+    for (let i = 1; i <= this.state.count; i++) {
+      newCounter.push(i);
+    }
+    this.setState({ counter: newCounter });
   }
 
   onChangeInput(e) {
@@ -24,7 +36,7 @@ class App extends React.Component {
   onClickBtn(e) {
     this.setState(state => {
       const tasks = state.tasks
-        .concat({ name: this.state.value, count: this.state.count });
+        .concat({ name: this.state.value, id: uniqid.time() });
       const count = state.count + 1;
 
       return {
@@ -33,7 +45,22 @@ class App extends React.Component {
         count
       }
     });
+    this.updateCounter();
     e.preventDefault();
+  }
+
+  onDeleteTask(e) {
+    const toRemove = e.target.parentElement.id;
+    this.setState(state => {
+      const tasks = state.tasks.filter((task) =>
+        task.id !== toRemove)
+      const count = state.count - 1;
+      return {
+        tasks,
+        count
+      }
+    });
+    this.updateCounter();
   }
 
   render() {
@@ -47,7 +74,7 @@ class App extends React.Component {
             Add Task
           </button>
         </form>
-        <Overview tasks={this.state.tasks} />
+        <Overview tasks={this.state.tasks} onDelete={this.onDeleteTask} />
       </div>
     );
   }

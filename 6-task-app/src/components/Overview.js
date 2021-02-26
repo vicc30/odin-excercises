@@ -1,18 +1,15 @@
 //Overview.js should just render our tasks
 
-import uniqid from "uniqid";
-
 const Overview = (props) => {
 
-    const { tasks } = props;
+    const { tasks, onDelete } = props;
 
     return (
-
         <div>
             <ul>
-                {tasks.map((task) => {
+                {tasks.map((task,idx) => {
                     return (
-                        <li key={uniqid.time()}>{task.count}: {task.name}</li>
+                        <li key={task.id} id={task.id}>{idx+1}: {task.name} <i onClick={onDelete} className="fas fa-trash-alt" ></i></li>
                     )
                 })}
             </ul>
